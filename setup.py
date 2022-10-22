@@ -18,6 +18,6 @@ setup(
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     install_requires=['numpy', 'scipy', 'absl-py', 'pyyaml', 'lxml', 
-        'transformations @ git+https://github.com/RebootMotion/transformations@reboot_init#egg=transformations-2022.10.18', 
+        'transformations @ git+https://github.com/RebootMotion/transformations@reboot_init#egg=transformations',
         'vtk'],
 )

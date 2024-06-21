@@ -17,6 +17,7 @@ setup(
     package_data = {'': ['kinpy/mjcf_parser/schema.xml']},
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    install_requires=['numpy', 'scipy', 'absl-py', 'pyyaml',
-                      'lxml', 'transformations', 'vtk'],
+    install_requires=['numpy', 'scipy', 'absl-py', 'pyyaml', 'lxml', 
+        'transformations @ git+https://github.com/RebootMotion/transformations@e35281d4f8a3a7a2b0d0566ced11d22893071d04#egg=transformations',
+        'vtk'],
 )

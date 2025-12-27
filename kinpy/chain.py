@@ -107,6 +107,8 @@ class SerialChain(Chain):
         if self._serial_frames is None:
             raise ValueError("Invalid end frame name %s." % end_frame_name)
 
+        self.full_chain = chain
+
     @staticmethod
     def _generate_serial_chain_recurse(root_frame: frame.Frame, end_frame_name: str) -> Optional[List[frame.Frame]]:
         for child in root_frame.children:

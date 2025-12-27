@@ -9,7 +9,7 @@ license = "MIT"
 python = "^3.7"
 numpy = "^1.18.0"
 scipy = "^1.5.0"
-transformations = "^2020.1.1"
+transformations = { git = "https://github.com/RebootMotion/transformations.git", branch = "reboot_init" }
 absl-py = "^0.11.0"
 lxml = "^4.6.2"
 PyYAML = "^5.4.1"

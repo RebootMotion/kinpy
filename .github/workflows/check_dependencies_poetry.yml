@@ -1,0 +1,41 @@
+name: check-dependencies-poetry
+
+# Validates a Poetry dependency bump before a human merges it. `poetry install`
+# resolves + installs the versions pinned in pyproject.toml on the repo's Python
+# (using poetry.lock when the repo commits one, else resolving from scratch), so a
+# version change is proven, not assumed. security-agent injects this when the repo
+# has no such workflow.
+
+on:
+  pull_request:
+    paths:
+      - "**/pyproject.toml"
+      - "**/poetry.lock"
+      - ".github/workflows/check_dependencies_poetry.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  poetry-install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          submodules: recursive
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: "3.10"
+      - name: Free disk space
+        # Heavy deps (numpy/scipy/torch/CUDA wheels) can exceed the runner's ~14 GB.
+        run: |
+          sudo rm -rf /usr/local/lib/android /usr/share/dotnet /opt/ghc \
+            /usr/local/share/boost /opt/hostedtoolcache/CodeQL || true
+          df -h /
+      - name: Install Poetry
+        run: pip install poetry
+      - name: Install dependencies
+        # Resolves + installs the pinned deps (uses poetry.lock if present, else resolves),
+        # proving the bumped versions install on this Python. --no-root skips building the project.
+        run: poetry install --no-root --no-interaction

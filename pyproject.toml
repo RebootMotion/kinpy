@@ -6,19 +6,19 @@ authors = ["neka-nat <nekanat.stock@gmail.com>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.10"
 numpy = "^1.18.0"
 scipy = "^1.5.0"
 transformations = "^2020.1.1"
 absl-py = "^0.11.0"
-lxml = "^4.6.2"
+lxml = "==6.1.1"
 PyYAML = "^5.4.1"
 vtk = "^9.0.1"
 
 [tool.poetry.dev-dependencies]
 twine = "^3.3.0"
 isort = "^5.9.3"
-black = "^24.3.0"
+black = "==26.5.1"
 flake8 = "^5.0.4"
 flake8-bugbear = "^22.8.23"
 flake8-simplify = "^0.19.3"
